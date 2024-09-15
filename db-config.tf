@@ -1,7 +1,3 @@
-provider "aws" {
-  region     = "us-east-1" # Defina a região AWS desejada
-}
-
 resource "aws_db_instance" "default" {
   allocated_storage    = var.allocated_storage    # Tamanho do armazenamento em GB
   storage_type         = var.storage_type         # Tipo de armazenamento (gp2 é SSD de propósito geral)
