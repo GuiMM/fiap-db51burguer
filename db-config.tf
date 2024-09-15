@@ -23,7 +23,7 @@ resource "aws_db_instance" "default" {
 
   # Configurações adicionais
   backup_retention_period = 7            # Período de retenção de backup em dias
-  multi_az                = var.multi_az # Se deve ser configurado em múltiplas zonas de disponibilidade
+  multi_az                = false # Se deve ser configurado em múltiplas zonas de disponibilidade
   publicly_accessible     = true         # Se a instância deve ser acessível publicamente
 }
 
