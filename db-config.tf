@@ -1,8 +1,5 @@
 provider "aws" {
   region     = "us-east-1" # Defina a região AWS desejada
-  access_key = secrets.ACCESS_KEY_AWS
-  secret_key = secrets.SECRET_KEY_AWS
-  token      = secrets.TOKEN_AWS
 }
 
 resource "aws_db_instance" "default" {
