@@ -7,7 +7,6 @@ resource "aws_db_instance" "default" {
   db_name              = var.db_name              # Nome do banco de dados
   username             = var.db_user_name         # Nome de usuário do administrador
   password             = var.db_password_name     # Senha do administrador
-  parameter_group_name = var.parameter_group_name # Grupo de parâmetros
   skip_final_snapshot  = var.skip_final_snapshot  # Se verdadeiro, não cria um snapshot final ao excluir a instância
 
   # Configurações de rede
@@ -16,7 +15,7 @@ resource "aws_db_instance" "default" {
 
   # Configurações adicionais
   backup_retention_period = 7            # Período de retenção de backup em dias
-  multi_az                = false # Se deve ser configurado em múltiplas zonas de disponibilidade
+  multi_az                = var.multi_az # Se deve ser configurado em múltiplas zonas de disponibilidade
   publicly_accessible     = true         # Se a instância deve ser acessível publicamente
 }
 
@@ -82,8 +81,8 @@ resource "aws_security_group" "default" {
   name_prefix = "my-db-sg-"
 
   ingress {
-    from_port   = 3306
-    to_port     = 3306
+    from_port   = 5432
+    to_port     = 5432
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"] # Permite acesso de qualquer lugar, ajuste conforme necessário
   }
