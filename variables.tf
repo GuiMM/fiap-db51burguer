@@ -6,26 +6,21 @@ variable "allocated_storage" {
 variable "storage_type" {
   description = "type of the storage"
   type        = string
-  default     = "io2"
+  default     = "gp3"
 }
 variable "engine" {
   description = "The database engine"
   type        = string
-  default     = "mysql"
+  default     = "postgres"
 }
 variable "engine_version" {
   description = "The engine version"
-  default     = "8.0.32"
+  default     = "16.3"
   type        = string
 }
 variable "instance_class" {
   description = "The RDS instance class"
   default     = "db.t3.micro"
-  type        = string
-}
-variable "parameter_group_name" {
-  description = "Name of the DB parameter group to associate"
-  default     = "default.mysql8.0"
   type        = string
 }
 variable "username" {
