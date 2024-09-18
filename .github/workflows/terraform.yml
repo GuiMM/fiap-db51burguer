@@ -4,7 +4,6 @@ on:
   push:
     branches: [ "master" ]
   pull_request:
-  workflow_dispatch:  # Adiciona um acionador manual
   
 permissions:
   contents: read
@@ -87,11 +86,3 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/master'
       run: terraform apply -auto-approve -input=false
-
-    - name: Terraform Init for Destroy
-      if: github.event_name == 'workflow_dispatch'
-      run: terraform init
-
-    - name: Terraform Destroy
-      if: github.event_name == 'workflow_dispatch'
-      run: terraform destroy -auto-approve
