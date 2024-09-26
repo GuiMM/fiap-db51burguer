@@ -69,4 +69,32 @@ data "aws_vpc" "fiap51Vpc" {
 }
 
 
+
+#Permite acesso local
+data "aws_internet_gateway" "fiap51Igw" {
+  filter {
+    name   = "attachment.vpc-id"
+    values = [data.aws_vpc.fiap51Vpc.id]
+  }
+}
+
+resource "aws_route_table" "PublicRT" {
+  vpc_id = data.aws_vpc.fiap51Vpc.id
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = data.aws_internet_gateway.fiap51Igw.id
+  }
+}
+#6 : route table association  
+resource "aws_route_table_association" "PublicRTAssociationA" {
+  subnet_id      = aws_subnet.privateSubnetA.id
+  route_table_id = aws_route_table.PublicRT.id
+}
+#6 : route table association
+resource "aws_route_table_association" "PublicRTAssociationB" {
+  subnet_id      = aws_subnet.privateSubnetB.id
+  route_table_id = aws_route_table.PublicRT.id
+}
+
+
 //usar o secret manager da aws?
