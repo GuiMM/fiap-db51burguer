@@ -44,32 +44,22 @@ variable "multi_az" {
   type        = string
 }
 variable "db_name" {
-  description = "projeto multi_az"
+  description = "create db_name"
   default     = "burguer51"
   type        = string
 }
 variable "db_user_name" {
-  description = "projeto multi_az"
+  description = "create db_user_name"
   default     = "root"
   type        = string
 }
 variable "db_password_name" {
-  description = "projeto multi_az"
+  description = "create db_password_name"
   default     = "rootrootroot"
   type        = string
 }
 variable "identifier" {
   description = "The name of the RDS instance"
   default     = "terraform-database-test"
-  type        = string
-}
-variable "port" {
-  description = "The port on which the DB accepts connections"
-  default     = "3306"
-  type        = number
-}
-variable "name" {
-  description = "The database name"
-  default     = "Mysqldatabase"
   type        = string
 }
