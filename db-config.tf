@@ -1,4 +1,4 @@
-resource "aws_db_instance" "default" {
+resource "aws_db_instance" "fiap51BurguerRds" {
   allocated_storage    = var.allocated_storage    # Tamanho do armazenamento em GB
   storage_type         = var.storage_type         # Tipo de armazenamento (gp2 é SSD de propósito geral)
   engine               = var.engine               # Engine do banco de dados
@@ -20,21 +20,21 @@ resource "aws_db_instance" "default" {
 }
 
 #Cria 1 subnets para DB
-resource "aws_subnet" "privateSubnetA" {
+resource "aws_subnet" "privateSubnetC" {
   vpc_id            = data.aws_vpc.fiap51Vpc.id
-  availability_zone = "us-east-1a"
+  availability_zone = "us-east-1c"
   cidr_block        = "10.0.3.0/24"
 }
-resource "aws_subnet" "privateSubnetB" {
+resource "aws_subnet" "privateSubnetD" {
   vpc_id            = data.aws_vpc.fiap51Vpc.id
-  availability_zone = "us-east-1b"
+  availability_zone = "us-east-1d"
   cidr_block        = "10.0.4.0/24"
 }
 
 #associa subnet no grupo de subnet que serao utilizadas
 resource "aws_db_subnet_group" "subnetGroupDB" {
   name       = "my-db-subnet-group"
-  subnet_ids = [aws_subnet.privateSubnetA.id, aws_subnet.privateSubnetB.id]
+  subnet_ids = [aws_subnet.privateSubnetC.id, aws_subnet.privateSubnetD.id]
 
   tags = {
     Name = "my-db-subnet-group"
@@ -68,8 +68,6 @@ data "aws_vpc" "fiap51Vpc" {
   }
 }
 
-
-
 #Permite acesso local
 data "aws_internet_gateway" "fiap51Igw" {
   filter {
@@ -85,16 +83,17 @@ resource "aws_route_table" "PublicRT" {
     gateway_id = data.aws_internet_gateway.fiap51Igw.id
   }
 }
+
 #6 : route table association  
 resource "aws_route_table_association" "PublicRTAssociationA" {
-  subnet_id      = aws_subnet.privateSubnetA.id
-  route_table_id = aws_route_table.PublicRT.id
-}
-#6 : route table association
-resource "aws_route_table_association" "PublicRTAssociationB" {
-  subnet_id      = aws_subnet.privateSubnetB.id
+  subnet_id      = aws_subnet.privateSubnetC.id
   route_table_id = aws_route_table.PublicRT.id
 }
 
+#6 : route table association
+resource "aws_route_table_association" "PublicRTAssociationB" {
+  subnet_id      = aws_subnet.privateSubnetD.id
+  route_table_id = aws_route_table.PublicRT.id
+}
 
 //usar o secret manager da aws?
