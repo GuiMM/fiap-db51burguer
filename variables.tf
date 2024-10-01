@@ -23,16 +23,6 @@ variable "instance_class" {
   default     = "db.t3.micro"
   type        = string
 }
-variable "username" {
-  description = "Username for the master DB user."
-  default     = "databaseteste"
-  type        = string
-}
-variable "password" {
-  description = "password of the database"
-  default     = "password"
-  type        = string
-}
 variable "skip_final_snapshot" {
   description = "skip snapshot"
   default     = "true"
@@ -45,17 +35,14 @@ variable "multi_az" {
 }
 variable "db_name" {
   description = "create db_name"
-  default     = "burguer51"
   type        = string
 }
 variable "db_user_name" {
   description = "create db_user_name"
-  default     = "root"
   type        = string
 }
-variable "db_password_name" {
-  description = "create db_password_name"
-  default     = "rootrootroot"
+variable "db_password" {
+  description = "create db_password"
   type        = string
 }
 variable "identifier" {

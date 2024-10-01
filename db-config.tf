@@ -1,4 +1,5 @@
 resource "aws_db_instance" "fiap51BurguerRds" {
+  identifier           = var.identifier
   allocated_storage    = var.allocated_storage    # Tamanho do armazenamento em GB
   storage_type         = var.storage_type         # Tipo de armazenamento (gp2 é SSD de propósito geral)
   engine               = var.engine               # Engine do banco de dados
@@ -6,7 +7,7 @@ resource "aws_db_instance" "fiap51BurguerRds" {
   instance_class       = var.instance_class       # Tipo de instância
   db_name              = var.db_name              # Nome do banco de dados
   username             = var.db_user_name         # Nome de usuário do administrador
-  password             = var.db_password_name     # Senha do administrador
+  password             = var.db_password     # Senha do administrador
   skip_final_snapshot  = var.skip_final_snapshot  # Se verdadeiro, não cria um snapshot final ao excluir a instância
 
   # Configurações de rede
@@ -24,11 +25,17 @@ resource "aws_subnet" "privateSubnetC" {
   vpc_id            = data.aws_vpc.fiap51Vpc.id
   availability_zone = "us-east-1c"
   cidr_block        = "10.0.3.0/24"
+  tags = {
+    Name = "private-subnet-db-c"
+  }
 }
 resource "aws_subnet" "privateSubnetD" {
   vpc_id            = data.aws_vpc.fiap51Vpc.id
   availability_zone = "us-east-1d"
   cidr_block        = "10.0.4.0/24"
+  tags = {
+    Name = "private-subnet-db-d"
+  }
 }
 
 #associa subnet no grupo de subnet que serao utilizadas
