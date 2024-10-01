@@ -47,6 +47,6 @@ variable "db_password" {
 }
 variable "identifier" {
   description = "The name of the RDS instance"
-  default     = "51burguer-database"
+  default     = "database-51burguer"
   type        = string
 }
