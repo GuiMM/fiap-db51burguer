@@ -47,6 +47,6 @@ variable "db_password" {
 }
 variable "identifier" {
   description = "The name of the RDS instance"
-  default     = "terraform-database-test"
+  default     = "51Burguer-database"
   type        = string
 }
