@@ -48,8 +48,8 @@ jobs:
       if: github.event_name == 'pull_request'
       run: terraform plan -input=false \
             -var="db_name=${{ secrets.POSTGRES_DATABASE }}" \
-            -var="db_user_name=${{ secrets.POSTGRES_USER }}" \
-            -var="db_password=${{ secrets.POSTGRES_PASSWORD }}"
+            "db_user_name=${{ secrets.POSTGRES_USER }}" \
+            "db_password=${{ secrets.POSTGRES_PASSWORD }}"
            
     - name: Update Pull Request
       uses: actions/github-script@v6
@@ -89,5 +89,5 @@ jobs:
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false \
             -var="db_name=${{ secrets.POSTGRES_DATABASE }}" \
-            -var="db_user_name=${{ secrets.POSTGRES_USER }}" \
-            -var="db_password=${{ secrets.POSTGRES_PASSWORD }}"
+            "db_user_name=${{ secrets.POSTGRES_USER }}" \
+            "db_password=${{ secrets.POSTGRES_PASSWORD }}"
