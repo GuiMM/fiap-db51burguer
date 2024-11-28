@@ -47,6 +47,18 @@ variable "db_password" {
 }
 variable "identifier" {
   description = "The name of the RDS instance"
-  default     = "terraform-database-test"
+  default     = "51Burguer-database"
+  type        = string
+}
+
+variable "identifier_mongo" {
+  description = "The name of the RDS instance"
+  default     = "51Burguer-database"
+  type        = string
+}
+
+variable "engine_Mongo" {
+  description = "The database engine"
+  default     = "mongodb"
   type        = string
 }
