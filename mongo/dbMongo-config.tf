@@ -21,3 +21,18 @@ resource "mongodbatlas_cluster" "cluster-test" {
   backing_provider_name       = "AWS"
   provider_region_name = "US-EAST-1"
 }
+
+
+resource "mongodbatlas_database_user" "fiap51BurguerCheckoutUser" {
+  project_id   = "6747aac9c76de323d87944fc" 
+  username     = "root"
+  password     = "rootrootroot"
+  auth_database_name = "admin"
+
+
+  //TODO: Corrigir erro: POST: HTTP 400 Bad Request (Error code: "ATLAS_INVALID_ROLE") Detail: The specified role my-custom-role@51burguerCheckout does not exist. Reason: Bad Request. Params: [my-custom-role 51burguerCheckout]
+  roles {
+    database_name = "admin"
+    role_name = "readWrite"
+  }
+}
