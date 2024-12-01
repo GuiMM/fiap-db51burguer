@@ -84,4 +84,5 @@ jobs:
        
     - name: Terraform Apply
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-      run: terraform apply -auto-approve -input=false -var="db_name=${{ secrets.POSTGRES_DATABASE }}" -var="db_user_name=${{ secrets.POSTGRES_USER }}" -var="db_password=${{ secrets.POSTGRES_PASSWORD }}"
+      run: terraform apply -auto-approve -input=false -var="db_name_order=${{ secrets.POSTGRES_DATABASE }}" -var="db_user_name_order=${{ secrets.POSTGRES_USER }}" -var="db_password_order=${{ secrets.POSTGRES_PASSWORD }} \"
+                                                           "db_name_client=${{ secrets.POSTGRES_DATABASE }}" -var="db_user_name_client=${{ secrets.POSTGRES_USER }}" -var="db_password_client=${{ secrets.POSTGRES_PASSWORD }}  "

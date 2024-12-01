@@ -33,20 +33,37 @@ variable "multi_az" {
   default     = "false"
   type        = string
 }
-variable "db_name" {
+variable "db_name_client" {
   description = "create db_name"
   type        = string
 }
-variable "db_user_name" {
+variable "db_user_name_client" {
   description = "create db_user_name"
   type        = string
 }
-variable "db_password" {
+variable "db_password_client" {
   description = "create db_password"
   type        = string
 }
-variable "identifier" {
+variable "db_name_order" {
+  description = "create db_name"
+  type        = string
+}
+variable "db_user_name_order" {
+  description = "create db_user_name"
+  type        = string
+}
+variable "db_password_order" {
+  description = "create db_password"
+  type        = string
+}
+variable "identifier_bd_client" {
   description = "The name of the RDS instance"
-  default     = "database-51burguer"
+  default     = "database-51burguerClient"
+  type        = string
+}
+variable "identifier_bd_order" {
+  description = "The name of the RDS instance"
+  default     = "database-51burguerOrder"
   type        = string
 }

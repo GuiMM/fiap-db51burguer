@@ -1,13 +1,35 @@
-resource "aws_db_instance" "fiap51BurguerRds" {
-  identifier           = var.identifier
+resource "aws_db_instance" "fiap51BurguerRds1" {
+  identifier           = var.identifier_bd_client
   allocated_storage    = var.allocated_storage    # Tamanho do armazenamento em GB
   storage_type         = var.storage_type         # Tipo de armazenamento (gp2 é SSD de propósito geral)
   engine               = var.engine               # Engine do banco de dados
   engine_version       = var.engine_version       # Versão do MySQL
   instance_class       = var.instance_class       # Tipo de instância
-  db_name              = var.db_name              # Nome do banco de dados
-  username             = var.db_user_name         # Nome de usuário do administrador
-  password             = var.db_password     # Senha do administrador
+  db_name              = var.db_name_client              # Nome do banco de dados
+  username             = var.db_user_name_client         # Nome de usuário do administrador
+  password             = var.db_password_client     # Senha do administrador
+  skip_final_snapshot  = var.skip_final_snapshot  # Se verdadeiro, não cria um snapshot final ao excluir a instância
+
+  # Configurações de rede
+  vpc_security_group_ids = ["${aws_security_group.securityGroupDB.id}"]
+  db_subnet_group_name   = aws_db_subnet_group.subnetGroupDB.name
+
+  # Configurações adicionais
+  backup_retention_period = 7            # Período de retenção de backup em dias
+  multi_az                = var.multi_az # Se deve ser configurado em múltiplas zonas de disponibilidade
+  publicly_accessible     = true         # Se a instância deve ser acessível publicamente
+}
+
+resource "aws_db_instance" "fiap51BurguerRds2" {
+  identifier           = var.identifier_bd_order
+  allocated_storage    = var.allocated_storage    # Tamanho do armazenamento em GB
+  storage_type         = var.storage_type         # Tipo de armazenamento (gp2 é SSD de propósito geral)
+  engine               = var.engine               # Engine do banco de dados
+  engine_version       = var.engine_version       # Versão do MySQL
+  instance_class       = var.instance_class       # Tipo de instância
+  db_name              = var.db_name_order              # Nome do banco de dados
+  username             = var.db_user_name_order         # Nome de usuário do administrador
+  password             = var.db_password_order     # Senha do administrador
   skip_final_snapshot  = var.skip_final_snapshot  # Se verdadeiro, não cria um snapshot final ao excluir a instância
 
   # Configurações de rede
