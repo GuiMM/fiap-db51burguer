@@ -59,11 +59,11 @@ variable "db_password_order" {
 }
 variable "identifier_bd_client" {
   description = "The name of the RDS instance"
-  default     = "database-51burguerClient"
+  default     = "database-51burguer-client"
   type        = string
 }
 variable "identifier_bd_order" {
   description = "The name of the RDS instance"
-  default     = "database-51burguerOrder"
+  default     = "database-51burguer-order"
   type        = string
 }
